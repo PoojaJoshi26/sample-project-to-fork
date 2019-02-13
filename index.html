@@ -16,3 +16,281 @@
         </ul>
     </body>
 </html>
+
+<!--
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ echo "tea" | git hash-object --stdin
+a01ebc374d00a6e64f55100ae31cf6aef8858f10
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ echo "tea " | git hash-object --stdin
+4f90f41971148c7acaae8758ad7ad9943cf76480
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ echo "Tea " | git hash-object --stdin
+73b823d4116b32cb50be45e080f45c6caf5f0da3
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ echo "Tea" | git hash-object --stdin
+6bd3eebdc687408ef3c12aa57bd4eb4a3830804d
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ git config --global user.email pooja.v.raut@accenture.com
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ git config --global user.name "Pooja Raut"
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground
+$ git config --global --list
+user.email=pooja.v.raut@accenture.com
+user.name=Pooja Raut
+
+
+
+
+make directory
+
+mkdir repo
+cd repo
+
+ls -al
+
+git init
+
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git commit -m "Incomplete Tea"
+[master (root-commit) b93c2eb] Incomplete Tea
+ 2 files changed, 2 insertions(+)
+ create mode 100644 description/tea.txt
+ create mode 100644 menu.txt
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git log
+commit b93c2eb7494dccc5aa2af691dabb8dedaa5249a4 (HEAD -> master)
+Author: Pooja Raut <pooja.v.raut@accenture.com>
+Date:   Tue Feb 12 23:29:05 2019 -0600
+
+    Incomplete Tea
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git count-objects
+4 objects, 0 kilobytes
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git log --oneline
+b93c2eb (HEAD -> master) Incomplete Tea
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git cat-file
+usage: git cat-file (-t [--allow-unknown-type] | -s [--allow-unknown-type] | -e | -p | <type> | --textconv | --filters) [--path=<path>] <object>
+   or: git cat-file (--batch | --batch-check) [--follow-symlinks] [--textconv | --filters]
+
+<type> can be one of: blob, tree, commit, tag
+    -t                    show object type
+    -s                    show object size
+    -e                    exit with zero when there's no error
+    -p                    pretty-print object's content
+    --textconv            for blob objects, run textconv on object's content
+    --filters             for blob objects, run filters on object's content
+    --path <blob>         use a specific path for --textconv/--filters
+    --allow-unknown-type  allow -s and -t to work with broken/corrupt objects
+    --buffer              buffer --batch output
+    --batch[=<format>]    show info and content of objects fed from the standard input
+    --batch-check[=<format>]
+                          show info about objects fed from the standard input
+    --follow-symlinks     follow in-tree symlinks (used with --batch or --batch-check)
+    --batch-all-objects   show all objects with --batch or --batch-check
+    --unordered           do not order --batch-all-objects output
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git cat-file -t
+usage: git cat-file (-t [--allow-unknown-type] | -s [--allow-unknown-type] | -e | -p | <type> | --textconv | --filters) [--path=<path>] <object>
+   or: git cat-file (--batch | --batch-check) [--follow-symlinks] [--textconv | --filters]
+
+<type> can be one of: blob, tree, commit, tag
+    -t                    show object type
+    -s                    show object size
+    -e                    exit with zero when there's no error
+    -p                    pretty-print object's content
+    --textconv            for blob objects, run textconv on object's content
+    --filters             for blob objects, run filters on object's content
+    --path <blob>         use a specific path for --textconv/--filters
+    --allow-unknown-type  allow -s and -t to work with broken/corrupt objects
+    --buffer              buffer --batch output
+    --batch[=<format>]    show info and content of objects fed from the standard input
+    --batch-check[=<format>]
+                          show info about objects fed from the standard input
+    --follow-symlinks     follow in-tree symlinks (used with --batch or --batch-check)
+    --batch-all-objects   show all objects with --batch or --batch-check
+    --unordered           do not order --batch-all-objects output
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git cat-file -t b93c2eb
+commit
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git cat-file -p b93c2eb
+tree 00504352f559b059e3fd732269ebf4d3df815672
+author Pooja Raut <pooja.v.raut@accenture.com> 1550035745 -0600
+committer Pooja Raut <pooja.v.raut@accenture.com> 1550035745 -0600
+
+Incomplete Tea
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git cat-file -t 00504352
+tree
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git cat-file -p 00504352
+040000 tree 22424f98c3f5ad67d12df24409d280089579f94c    description
+100644 blob 798baa07c28b83fd093e18266c8ab154d2227f7c    menu.txt
+
+
+
+
+
+
+
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git add -all
+error: did you mean `--all` (with two dashes ?)
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git add --all
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git commit -m "Tea Ingredient with elaich"
+[master 0ab5f82] Tea Ingredient with elaich
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git log --oneline
+0ab5f82 (HEAD -> master) Tea Ingredient with elaich
+b1a2d8c (tag: v0.1) Ingredients added for Tea
+b93c2eb Incomplete Tea
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git merge development
+Auto-merging description/tea.txt
+CONFLICT (content): Merge conflict in description/tea.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   description/tea.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master|MERGING)
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+        both modified:   description/tea.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master|MERGING)
+$ git add -all
+error: did you mean `--all` (with two dashes ?)
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master|MERGING)
+$ git add --all
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master|MERGING)
+$ git status
+On branch master
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+
+        modified:   description/tea.txt
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master|MERGING)
+$ git commit -m "Ingredients fo mix tea with jaggery"
+[master b0d7921] Ingredients fo mix tea with jaggery
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git log --oneline
+b0d7921 (HEAD -> master) Ingredients fo mix tea with jaggery
+0ab5f82 Tea Ingredient with elaich
+f731dc3 (development) Ingredients for ginger tea with suger free
+b1a2d8c (tag: v0.1) Ingredients added for Tea
+b93c2eb Incomplete Tea
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git log --oneline --graph
+*   b0d7921 (HEAD -> master) Ingredients fo mix tea with jaggery
+|\
+| * f731dc3 (development) Ingredients for ginger tea with suger free
+* | 0ab5f82 Tea Ingredient with elaich
+|/
+* b1a2d8c (tag: v0.1) Ingredients added for Tea
+* b93c2eb Incomplete Tea
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (master)
+$ git checkout development
+Switched to branch 'development'
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/repo (development)
+$ git merge master
+Updating f731dc3..b0d7921
+Fast-forward
+ description/tea.txt | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+
+
+
+
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/sample-website (master)
+$ git remote add origin https://github.com/PoojaJoshi26/samplewebsite.git
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/sample-website (master)
+$ git push -u origin master
+Username for 'https://github.com':
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/sample-website (master)
+$ git remote -v
+origin  https://github.com/PoojaJoshi26/samplewebsite.git (fetch)
+origin  https://github.com/PoojaJoshi26/samplewebsite.git (push)
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/sample-website (master)
+$ git push -u origin master
+Username for 'https://github.com': Poojajoshi26
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 338 bytes | 338.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0)
+To https://github.com/PoojaJoshi26/samplewebsite.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+A06438_P5.Training@P5-H82P882 MINGW64 /c/Git-playground/sample-website (master)
+$
+-->
